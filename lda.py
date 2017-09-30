@@ -41,11 +41,10 @@ for i in code:
 
 
 # list for tokenized documents in loop
-texts = []
 
 # loop through document list
-for i in commList:
-    
+for i in code:
+    texts = []
     # clean and tokenize document string
     raw = i.lower()
     tokens = tokenizer.tokenize(raw)
@@ -61,11 +60,15 @@ for i in commList:
     texts.append(stemmed_tokens)
 
 # turn our tokenized documents into a id <-> term dictionary
-dictionary = corpora.Dictionary(texts)
+    dictionary = corpora.Dictionary(texts)
     
 # convert tokenized documents into a document-term matrix
-corpus = [dictionary.doc2bow(text) for text in texts]
+    corpus = [dictionary.doc2bow(text) for text in texts]
+    # print(corpus)
 
 # generate LDA model
-ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word = dictionary, passes=20)
-print(ldamodel.print_topics(num_topics=2, num_words=6))
+    try:
+        ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word = dictionary, passes=20)
+        print(ldamodel.print_topics(num_topics=2, num_words=6))
+    except ValueError:
+        pass
