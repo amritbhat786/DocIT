@@ -16,9 +16,9 @@ java_stop = ['abstract', 'assert', 'boolean', 'break', 'byte' , 'byte', 'switch'
                     'implements', 'import' , 'instanceOf','array','int']
 
 # Create p_stemmer of class PorterStemmer
-p_stemmer = PorterStemmer()
+#p_stemmer = PorterStemmer()
 
-with open("quicksort.java" ,'r' ) as infile:
+with open("qsort.java" ,'r' ) as infile:
     string = infile.read()
 
 code = string.split('\n')
@@ -47,10 +47,10 @@ for i in code:
     stopped_tokens = [i for i in stopped_tokens if i not in en_stop]
     
     # stem tokens
-    stemmed_tokens = [p_stemmer.stem(i) for i in stopped_tokens]
+    #stemmed_tokens = [p_stemmer.stem(i) for i in stopped_tokens]
     
     # add tokens to list
-    texts.append(stemmed_tokens)
+    texts.append(tokens)
 
 # turn our tokenized documents into a id <-> term dictionary
     dictionary = corpora.Dictionary(texts)
@@ -62,6 +62,13 @@ for i in code:
 # generate LDA model
     try:
         ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word = dictionary, passes=20)
-        print(ldamodel.print_topics(num_topics=1, num_words=6))
+        topiclist = ldamodel.show_topics(num_topics=1, num_words=6, log=True, formatted=True)
+        #print(topiclist)
+        tl = []
+        for i in topiclist:
+            tl.append(i)
+            for j in tl:
+                element = j[1]
+                re.compile('[a-zA-Z]+').findall(element)
     except ValueError:
         pass
