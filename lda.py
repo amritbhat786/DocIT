@@ -24,6 +24,7 @@ with open("qsort.java" ,'r' ) as infile:
 code = string.split('\n')
 condition = re.compile("\/\/")
 commList = []
+wordList = []
 
 for i in code:
     res = condition.findall(i)
@@ -63,12 +64,21 @@ for i in code:
     try:
         ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word = dictionary, passes=20)
         topiclist = ldamodel.show_topics(num_topics=1, num_words=6, log=True, formatted=True)
-        #print(topiclist)
         tl = []
         for i in topiclist:
             tl.append(i)
             for j in tl:
                 element = j[1]
-                re.compile('[a-zA-Z]+').findall(element)
+                wordList.append(re.compile('[a-zA-Z]+').findall(element))
     except ValueError:
         pass
+
+justWords = []
+for i in wordList:
+    for j in i:
+        justWords.append(j)
+
+dictionary = corpora.Dictionary(wordList)
+corpus = [dictionary.doc2bow(text) for text in wordList]
+ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word = dictionary, passes=5)
+print(ldamodel.show_topics(num_topics=1, num_words=10, log=True, formatted=True))
