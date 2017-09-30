@@ -14,7 +14,7 @@ import gensim
 # compile sample documents into a list
 #doc_set = [doc_a, doc_b, doc_c, doc_d, doc_e]
 
-cnt=0
+
 
 
 #lines = [line.rstrip('\n') for line in open('/home/amrit786/Documents/BioInfoSaha/3DCode/checkdrawsurface.m','r')]
@@ -30,22 +30,12 @@ p_stemmer = PorterStemmer()
 texts = []
 
 
-blocks = [[i for i in lines[2:9]],[i for i in lines[11:20]],[i for i in lines[22:35]]]
+#blocks = [[i for i in lines[2:9]],[i for i in lines[11:20]],[i for i in lines[22:35]]]
 
 #print(blocks[0])
-for i in lines:
-	block = []
-	bracket = []
-	
-		while cnt! = 0
-		if '{' in j:
-			cnt +=1
-		if '}' in j:
-			cnt-=1
-		block.append(j)
-		 
 
-for i in blocks:
+
+for i in lines:
 	for j in i:
 		if j != '':
 			raw = j.lower()
@@ -61,7 +51,7 @@ for i in blocks:
 			corpus = [dictionary.doc2bow(text) for text in texts]
 
 			ldamodel = gensim.models.ldamodel.LdaModel(corpus,num_topics = 3,id2word = dictionary,passes=20)
-			#print(ldamodel.print_topics(num_topics = 3, num_words = 3))
+			print(ldamodel.print_topics(num_topics = 3, num_words = 3))
 
 #print(texts)
 
