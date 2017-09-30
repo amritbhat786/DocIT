@@ -21,7 +21,7 @@ import gensim
 lines = [line.rstrip('\n') for line in open('qsort.java','r')]
 
 #lines.sort()
-#print(lines)
+print(lines)
 
 tok = RegexpTokenizer(r'\w+')
 en_stop = get_stop_words('en')
@@ -36,13 +36,13 @@ texts = []
 
 
 for i in lines:
-	for j in i:
+	for j in i.split():
 		if j != '':
 			raw = j.lower()
 			tokens = tok.tokenize(raw)
 
 			stopped_tokens = [m for m in tokens if not m in en_stop]
-
+			#print(stopped_tokens)
 			#stemmed_tokens = [p_stemmer.stem(i) for i in stopped_tokens]
 
 			texts.append(stopped_tokens)
