@@ -18,10 +18,10 @@ import gensim
 
 
 #lines = [line.rstrip('\n') for line in open('/home/amrit786/Documents/BioInfoSaha/3DCode/checkdrawsurface.m','r')]
-lines = [line.rstrip('\n') for line in open('qsort.java','r')]
+lines = [line.rstrip('\n') for line in open('/home/amrit786/Documents/BioInfoSaha/DocIT/101repo/contributions/antlrAcceptor/org/softlang/tests/Parsing.java','r')]
 
 #lines.sort()
-print(lines)
+#print(lines)
 
 tok = RegexpTokenizer(r'\w+')
 en_stop = get_stop_words('en')
