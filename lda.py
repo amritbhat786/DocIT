@@ -52,14 +52,14 @@ for i in code:
     
     # add tokens to list
     texts.append(tokens)
-
+    
 # turn our tokenized documents into a id <-> term dictionary
     dictionary = corpora.Dictionary(texts)
     
 # convert tokenized documents into a document-term matrix
     corpus = [dictionary.doc2bow(text) for text in texts]
     # print(corpus)
-
+    
 # generate LDA model
     try:
         ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word = dictionary, passes=20)
