@@ -88,10 +88,8 @@ for i in wordList:
 
 dictionary = corpora.Dictionary(wordList)
 corpus = [dictionary.doc2bow(text) for text in wordList]
-ldamodel = gensim.models.ldamodel.LdaModel(
-                                           corpus, num_topics=2,
-                                           id2word=dictionary, passes=5
-                                          )
+ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2,
+            id2word=dictionary, passes=5)
 print(ldamodel.show_topics(
                            num_topics=1, num_words=10, log=True,
                            formatted=True
