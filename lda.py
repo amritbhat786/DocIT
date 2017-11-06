@@ -71,7 +71,8 @@ for i in code:
         topiclist = ldamodel.show_topics(
                                          num_topics=1, num_words=6, log=True,
                                          formatted=True
-                                        )
+
+                                         )
         tl = []
         for i in topiclist:
             tl.append(i)
