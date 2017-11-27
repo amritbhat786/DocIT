@@ -40,7 +40,8 @@ for i in code:
 # list for tokenized documents in loop
 
 # loop through document list
-for i in code:
+
+for i in code: 
     texts = []
     # clean and tokenize document string
     raw = i.lower()
