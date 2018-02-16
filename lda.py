@@ -89,6 +89,7 @@ for i in wordList:
         justWords.append(j)
 
 dictionary = corpora.Dictionary(wordList)
+print(wordList)
 corpus = [dictionary.doc2bow(text) for text in wordList]
 ldamodel = gensim.models.ldamodel.LdaModel(
                                            corpus, num_topics=2,
